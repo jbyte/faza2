@@ -1,0 +1,1 @@
+web: java -jar estudent-web/target/dependency/webapp-runner.jar estudent-web/target/*.war
