@@ -19,12 +19,31 @@ public class TestController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String listAll(Model model){
 		model.addAttribute("users",us.getUsers());
-		return "TestDB";
+		return "index";
 	}
 	
 	@RequestMapping(value="/addUser",method=RequestMethod.POST)
 	public String addUser(@ModelAttribute User u){
 		us.addUser(u);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public String login(/*@ModelAttribute User u*/){
+		System.out.println("/login dela");
+		/*
+		User tmp = us.getUser(u.getEmail());
+		if(tmp!=null){
+			if(tmp.getPassword().equals(u.getPassword())){
+				switch(tmp.getTip()){
+					case 0: return "redirect:/views/overview-student.jsp";
+					case 1: return "redirect:/views/overview-professor.jsp";
+					case 2: return "redirect:/views/overview-referat.jsp";
+					default: return "redirect:/";
+				}
+			}else return "redirect:/";
+		}else return "redirect:/";
+		*/
 		return "redirect:/";
 	}
 }

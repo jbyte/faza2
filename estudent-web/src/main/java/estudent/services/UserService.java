@@ -19,6 +19,13 @@ public class UserService {
 	private EntityManager em;
 	
 	@Transactional
+	public User getUser(String email){
+		Query q = em.createNamedQuery("User.getByEmail");
+		q.setParameter(1,email);
+		return ((User)q.getSingleResult());
+	}
+	
+	@Transactional
 	public List<User> getUsers(){
 		Query q = em.createNamedQuery("User.getAll");
 		//Query q = em.createQuery("SELECT u FROM User u",User.class);

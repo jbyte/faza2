@@ -15,8 +15,8 @@
 
 	<h1>Add New</h1>
 	<form method="post" action="addUser">
-		Name: <input type="text" name="ime" />
-		LastName: <input type="text" name="priimek" />
+		Name: <input type="text" name="ime" /> LastName: <input type="text"
+			name="priimek" />
 		<button>Add</button>
 	</form>
 </body>

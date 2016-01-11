@@ -1,0 +1,14 @@
+users = {
+	"student" : {
+		"email" : "stud@uni.com",
+		"password" : "brobro"
+	},
+	"professor" : {
+		"email" : "prof@uni.com",
+		"password" : "testtest"
+	},
+	"referat" : {
+		"email" : "ref@uni.com",
+		"password" : "study"
+	}
+}
