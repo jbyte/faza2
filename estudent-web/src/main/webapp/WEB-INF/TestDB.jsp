@@ -10,13 +10,13 @@
 <body>
 	<h1>All Users</h1>
 	<c:forEach var="u" items="${users}">
-    Id: ${u.id} Name: ${u.name} LastName: ${u.lastname} <br />
+    Id: ${u.id} Name: ${u.ime} LastName: ${u.priimek} <br />
 	</c:forEach>
 
 	<h1>Add New</h1>
 	<form method="post" action="addUser">
-		Name: <input type="text" name="name" />
-		LastName: <input type="text" name="lastname" />
+		Name: <input type="text" name="ime" />
+		LastName: <input type="text" name="priimek" />
 		<button>Add</button>
 	</form>
 </body>

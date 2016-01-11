@@ -11,20 +11,17 @@ import org.hibernate.annotations.NamedQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import estudent.entities.User;
+import estudent.model.User;
 
 @Service
-@NamedQueries(
-	@NamedQuery(name="User.getAll",query="SELECT u FROM User u")
-)
 public class UserService {
 	@PersistenceContext(name="puEstudent")
 	private EntityManager em;
 	
 	@Transactional
 	public List<User> getUsers(){
-		//Query q = em.createNamedQuery("User.getAll");
-		Query q = em.createQuery("SELECT u FROM User u",User.class);
+		Query q = em.createNamedQuery("User.getAll");
+		//Query q = em.createQuery("SELECT u FROM User u",User.class);
 		return ((List<User>)q.getResultList());
 	}
 	

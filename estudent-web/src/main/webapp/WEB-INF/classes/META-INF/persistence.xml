@@ -5,6 +5,9 @@
 	<persistence-unit name="puEstudent"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>estudent.model.Course</class>
+		<class>estudent.model.Exam</class>
+		<class>estudent.model.User</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="validate" />
