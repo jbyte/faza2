@@ -1,5 +1,7 @@
 package estudent.services;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -13,6 +15,12 @@ import estudent.model.Mark;
 public class MarkService {
 	@PersistenceContext(name="puEstudent")
 	private EntityManager em;
+	
+	@Transactional
+	public List<Mark> getAll(){
+		Query q = em.createNamedQuery("Mark.getAll");
+		return ((List<Mark>)q.getResultList());
+	}
 
 	@Transactional
 	public Mark getMark(int id){
@@ -32,5 +40,15 @@ public class MarkService {
 		q.setParameter(1,id);
 		Mark m = ((Mark)q.getSingleResult());
 		em.remove(m);
+	}
+	
+	@Transactional
+	public void updateMark(int id, Mark tmp){
+		Query q = em.createNamedQuery("Mark.getById");
+		q.setParameter(1,id);
+		Mark m = ((Mark)q.getSingleResult());
+		if(m.getOcena()!=tmp.getOcena())m.setOcena(tmp.getOcena());
+		if(m.getZakluceno()!=tmp.getZakluceno())m.setZakluceno(tmp.getZakluceno());
+		em.merge(m);
 	}
 }

@@ -28,17 +28,13 @@
 
 			<section id="content">
 				<section class="main main-text-right">
-					<c:forEach var="u" items="${users}">
-						Id: ${u.id} Name: ${u.ime}
-					</c:forEach>
-					<c:out value="${session.user.ime}" />
 					<h3>Osebni podatki:</h3>
 					<form>	
 						<span class="left">Ime:</span>
 						<input class="input-small" type="text" name="firstname" value="${user.ime}" />
 						<br />
 						<span class="left">Priimek:</span>
-						<input class="input-small" type="text" name="surname" />
+						<input class="input-small" type="text" name="surname" value="${user.priimek}" />
 						<br />
 						<span class="left">EMŠO:</span>
 						<input class="input-small" type="text" name="emso" />

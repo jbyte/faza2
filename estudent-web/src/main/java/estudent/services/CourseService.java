@@ -1,5 +1,7 @@
 package estudent.services;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -13,6 +15,12 @@ import estudent.model.Course;
 public class CourseService {
 	@PersistenceContext(name="puEstudent")
 	private EntityManager em;
+	
+	@Transactional
+	public List<Course> getAll(){
+		Query q = em.createNamedQuery("Course.getAll");
+		return ((List<Course>)q.getResultList());
+	}
 	
 	@Transactional
 	public Course getCourse(int id){
@@ -32,6 +40,16 @@ public class CourseService {
 		q.setParameter(1,id);
 		Course m = ((Course)q.getSingleResult());
 		em.remove(m);
+	}
+	
+	@Transactional
+	public void updateCourse(int id, Course tmp){
+		Query q = em.createNamedQuery("Course.getById");
+		q.setParameter(1,id);
+		Course c = ((Course)q.getSingleResult());
+		if(!c.getIme().equals(tmp.getIme()))c.setIme(tmp.getIme());
+		if(!c.getUser().equals(tmp.getUser()))c.setUser(tmp.getUser());
+		em.merge(c);
 	}
 
 }

@@ -1,5 +1,7 @@
 package estudent.services;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -14,6 +16,12 @@ public class ExamService {
 	@PersistenceContext(name="puEstudent")
 	private EntityManager em;
 
+	@Transactional
+	public List<Exam> getAll(){
+		Query q = em.createNamedQuery("Exam.getAll");
+		return ((List<Exam>)q.getResultList());
+	}
+	
 	@Transactional
 	public Exam getExam(int id){
 		Query q  = em.createNamedQuery("Exam.getById");
@@ -32,5 +40,15 @@ public class ExamService {
 		q.setParameter(1,id);
 		Exam m = ((Exam)q.getSingleResult());
 		em.remove(m);
+	}
+	
+	@Transactional
+	public void updateExam(int id, Exam tmp){
+		Query q = em.createNamedQuery("Exam.getById");
+		q.setParameter(1,id);
+		Exam e = ((Exam)q.getSingleResult());
+		if(!e.getCas().equals(tmp.getCas()))e.setCas(tmp.getCas());
+		if(!e.getProstor().equals(tmp.getProstor()))e.setProstor(tmp.getProstor());
+		em.merge(e);
 	}
 }

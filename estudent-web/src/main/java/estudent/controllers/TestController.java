@@ -18,11 +18,13 @@ public class TestController {
 	@Autowired
 	private UserService us;
 	
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String listAll(Model model){
-		model.addAttribute("users",us.getUsers());
+		//model.addAttribute("users",us.getUsers());
 		return "index";
 	}
+	
 	
 	@RequestMapping(value="/addUser",method=RequestMethod.POST)
 	public String addUser(@ModelAttribute User u){
@@ -39,7 +41,7 @@ public class TestController {
 			if(tmp.getPassword().equals(u.getPassword())){
 				session.setAttribute("user",tmp);
 				switch(tmp.getTip()){
-					case 0: return "/overview-student";
+					case 0: return "redirect:/overview-student";
 					case 1: return "/overview-professor";
 					case 2: return "/overview-referat";
 					default: return "redirect:/";
@@ -57,4 +59,11 @@ public class TestController {
 	public String personal_data(){
 		return "personal-data";
 	}
+	
+	
+	@RequestMapping(value="/index")
+	public String index(){
+		return "index";
+	}
+	
 }
