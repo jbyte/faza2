@@ -6,15 +6,15 @@
 	<head>
 		<meta charset="Windows-1250" />
 		<title>E-Študent - vpis</title>
-		<link rel="stylesheet" type="text/css" href="./css/basic-style.css">
+		<link rel="stylesheet" type="text/css" href="./resources/css/basic-style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script src="./js/main.js"></script>
+		<script src="./resources/js/main.js"></script>
 	</head>
 
 	<body>
 		<div id="wraper">
 			<header>
-				<img src="./images/ul.png" alt="UL - logo" />
+				<img src="./resources/images/ul.png" alt="UL - logo" />
 				<h2>e-Štundet</h2>
 			</header>
 
@@ -28,7 +28,7 @@
 						<br />
 						<input type="password" name="password" placeholder="password"/>
 						<br />
-						<a class="btn btn-right" onclick="login" href="#">LOGIN</a>
+						<a class="btn btn-right" onclick="login()" href="#">LOGIN</a>
 						<button>test</button>
 					</form>
 				</section>

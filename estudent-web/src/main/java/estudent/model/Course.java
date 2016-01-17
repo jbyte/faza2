@@ -3,6 +3,9 @@ package estudent.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
+import javax.persistence.GeneratedValue;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -11,15 +14,17 @@ import java.util.List;
  */
 @Entity
 @Table(name="courses")
-@NamedQuery(name="Course.findAll", query="SELECT c FROM Course c")
+@NamedQueries({
+	@NamedQuery(name="Course.getAll", query="SELECT c FROM Course c"),
+	@NamedQuery(name="Course.getById", query="SELECT c FROM Course c WHERE c.id=?1")
+})
 public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@GeneratedValue
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-	@Column(nullable=true)
 	private String ime;
 
 	//bi-directional many-to-one association to User
@@ -30,6 +35,10 @@ public class Course implements Serializable {
 	//bi-directional many-to-one association to Exam
 	@OneToMany(mappedBy="course")
 	private List<Exam> exams;
+
+	//bi-directional many-to-one association to Mark
+	@OneToMany(mappedBy="course")
+	private List<Mark> marks;
 
 	public Course() {
 	}
@@ -68,16 +77,38 @@ public class Course implements Serializable {
 
 	public Exam addExam(Exam exam) {
 		getExams().add(exam);
-		exam.setCourse(this);
+		exam.setCours(this);
 
 		return exam;
 	}
 
 	public Exam removeExam(Exam exam) {
 		getExams().remove(exam);
-		exam.setCourse(null);
+		exam.setCours(null);
 
 		return exam;
+	}
+
+	public List<Mark> getMarks() {
+		return this.marks;
+	}
+
+	public void setMarks(List<Mark> marks) {
+		this.marks = marks;
+	}
+
+	public Mark addMark(Mark mark) {
+		getMarks().add(mark);
+		mark.setCours(this);
+
+		return mark;
+	}
+
+	public Mark removeMark(Mark mark) {
+		getMarks().remove(mark);
+		mark.setCours(null);
+
+		return mark;
 	}
 
 }

@@ -1,5 +1,7 @@
 package estudent.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,21 +31,30 @@ public class TestController {
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(/*@ModelAttribute User u*/){
+	public String login(HttpSession session, @ModelAttribute() User u){
 		System.out.println("/login dela");
-		/*
+		if(u.getEmail()==null || u.getEmail().equals(""))return "redirect:/";
 		User tmp = us.getUser(u.getEmail());
 		if(tmp!=null){
 			if(tmp.getPassword().equals(u.getPassword())){
+				session.setAttribute("user",tmp);
 				switch(tmp.getTip()){
-					case 0: return "redirect:/views/overview-student.jsp";
-					case 1: return "redirect:/views/overview-professor.jsp";
-					case 2: return "redirect:/views/overview-referat.jsp";
+					case 0: return "/overview-student";
+					case 1: return "/overview-professor";
+					case 2: return "/overview-referat";
 					default: return "redirect:/";
 				}
 			}else return "redirect:/";
 		}else return "redirect:/";
-		*/
-		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/overview-student")
+	public String overview_student(){
+		return "overview-student";
+	}
+	
+	@RequestMapping(value="/personal-data")
+	public String personal_data(){
+		return "personal-data";
 	}
 }

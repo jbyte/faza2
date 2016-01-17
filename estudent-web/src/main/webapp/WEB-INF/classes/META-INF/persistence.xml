@@ -7,6 +7,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>estudent.model.Course</class>
 		<class>estudent.model.Exam</class>
+		<class>estudent.model.Mark</class>
 		<class>estudent.model.User</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />

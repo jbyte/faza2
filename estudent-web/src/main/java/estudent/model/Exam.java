@@ -3,6 +3,10 @@ package estudent.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
+import javax.persistence.GeneratedValue;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -10,24 +14,29 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-@NamedQuery(name="Exam.findAll", query="SELECT e FROM Exam e")
+@NamedQueries({
+	@NamedQuery(name="Exam.getAll", query="SELECT e FROM Exam e"),
+	@NamedQuery(name="Exam.getById", query="SELECT e FROM Exam e WHERE e.id=?1")
+})
 public class Exam implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@GeneratedValue
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-	@Column(nullable=true)
 	private Timestamp cas;
 
-	@Column(nullable=true)
 	private String prostor;
 
-	//bi-directional many-to-one association to Course
+	//bi-directional many-to-one association to Cours
 	@ManyToOne
 	@JoinColumn(name="predmet")
 	private Course course;
+
+	//bi-directional many-to-one association to Mark
+	@OneToMany(mappedBy="exam")
+	private List<Mark> marks;
 
 	public Exam() {
 	}
@@ -56,12 +65,34 @@ public class Exam implements Serializable {
 		this.prostor = prostor;
 	}
 
-	public Course getCourse() {
+	public Course getCours() {
 		return this.course;
 	}
 
-	public void setCourse(Course course) {
+	public void setCours(Course course) {
 		this.course = course;
+	}
+
+	public List<Mark> getMarks() {
+		return this.marks;
+	}
+
+	public void setMarks(List<Mark> marks) {
+		this.marks = marks;
+	}
+
+	public Mark addMark(Mark mark) {
+		getMarks().add(mark);
+		mark.setExam(this);
+
+		return mark;
+	}
+
+	public Mark removeMark(Mark mark) {
+		getMarks().remove(mark);
+		mark.setExam(null);
+
+		return mark;
 	}
 
 }

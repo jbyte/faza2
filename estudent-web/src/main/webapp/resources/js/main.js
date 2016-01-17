@@ -57,7 +57,7 @@ function login(){
 		alert("stud@uni.com\nprof@uni.com\nref@uni.com");
 	}else{
 		if(email === "stud@uni.com"){
-			$(".btn-right").attr("href","./views/overview-student.jsp");
+			$(".btn-right").attr("href","./overview-student.jsp");
 		}else if(email === "prof@uni.com"){
 			$(".btn-right").attr("href","./views/overview-professor.jsp");
 		}else if(email === "ref@uni.com"){
