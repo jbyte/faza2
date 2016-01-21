@@ -65,3 +65,7 @@ function login(){
 		}
 	}
 }
+
+function submit_form(){
+	document.getElementById('form').submit();
+}

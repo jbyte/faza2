@@ -19,59 +19,71 @@
 			</header>
 			
 			<nav>
-				<a class="btn-link" href="overview-student">Pregled</a>
-				<a class="btn-link btn-link-curr" href="personal-data">Osebni Podatki</a>
-				<a class="btn-link" href="cert-order">Naroèilo potrdil</a>
-				<a class="btn-link" href="std-index">Študentski indeks</a>
+				<c:if test="${user.tip==0}">
+					<a class="btn-link" href="overview-student">Pregled</a>
+					<a class="btn-link btn-link-curr" href="personal-data">Osebni Podatki</a>
+					<a class="btn-link" href="cert-order">Naroèilo potrdil</a>
+					<a class="btn-link" href="std-index">Študentski indeks</a>
+				</c:if>
+				<c:if test="${user.tip==1}">
+					<a class="btn-link btn-link-curr" href="overview-professor">Pregled</a>
+					<a class="btn-link" href="personal-data">Osebni Podatki</a>
+					<a class="btn-link" href="new-exam">Nov izpitni rok</a>
+					<a class="btn-link" href="enter-mark">Vpis ocen</a>
+				</c:if>
+				<c:if test="${user.tip==2}">
+					<a class="btn-link btn-link-curr" href="overview-referat">Pregled</a>
+					<a class="btn-link" href="personal-data">Osebni Podatki</a>
+				</c:if>
 				<a class="btn-link" href="index">Logout</a>
 			</nav>
 
 			<section id="content">
 				<section class="main main-text-right">
 					<h3>Osebni podatki:</h3>
-					<form>	
+					<form id="form" action="updateUser" method="post">	
 						<span class="left">Ime:</span>
-						<input class="input-small" type="text" name="firstname" value="${user.ime}" />
+						<input class="input-small" type="text" name="ime" value="${user.ime}" />
 						<br />
 						<span class="left">Priimek:</span>
-						<input class="input-small" type="text" name="surname" value="${user.priimek}" />
+						<input class="input-small" type="text" name="priimek" value="${user.priimek}" />
 						<br />
 						<span class="left">EMŠO:</span>
-						<input class="input-small" type="text" name="emso" />
+						<input class="input-small" type="text" name="emso" value="${user.emso}" />
 						<br />
 						<span class="left">Email:</span>
-						<input class="input-small" type="email" name="email" />
+						<input class="input-small" type="email" name="email" value="${user.email}" />
 						<hr />
 
 						<h5>Stalno prebivališèe:</h5>
 						<span class="left">Naslov:</span>
-						<input class="input-small" type="text" name="address" />
+						<input class="input-small" type="text" name="naslov" value="${user.naslov}" />
 						<br />
 						<span class="left">Mesto:</span>
-						<input class="input-small" type="text" name="city" />
+						<input class="input-small" type="text" name="mesto" value="${user.mesto}" />
 						<br />
 						<span class="left">Poštna številka:</span>
-						<input class="input-small" type="text" name="post" />
+						<input class="input-small" type="text" name="postnum" value="${user.postnum}" />
 						<br />
 						<span class="left">Država:</span>
-						<input class="input-small" type="text" name="country" />
+						<input class="input-small" type="text" name="drzava" value="${user.drzava}" />
 						<hr />
 
 						<h5>Zaèasno prebivališèe</h5>
 						<span class="left">Naslov:</span>
-						<input class="input-small" type="text" name="tmp-address" />
+						<input class="input-small" type="text" name="zcNaslov" value="${user.zcNaslov}" />
 						<br />
 						<span class="left">Mesto:</span>
-						<input class="input-small" type="text" name="tmp-city" />
+						<input class="input-small" type="text" name="zcMesto" value="${user.zcMesto}" />
 						<br />
 						<span class="left">Poštna številka:</span>
-						<input class="input-small" type="text" name="tmp-post" />
+						<input class="input-small" type="text" name="zcPostnum" value="${user.zcPostnum}" />
 						<br />
 						<span class="left">Država:</span>
-						<input class="input-small" type="text" name="tmp-country" />
+						<input class="input-small" type="text" name="zcDrzava" value="${user.zcDrzava}" />
 						<br />
 
-						<a class="btn btn-right" onclick="checkFields()" href="#">Shrani</a>
+						<a class="btn btn-right" onclick="checkFields();submit_form();" href="#">Shrani</a>
 					</form>
 				</section>
 			</section>

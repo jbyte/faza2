@@ -58,7 +58,7 @@ public class User implements Serializable {
 	private int zcPostnum;
 
 	//bi-directional many-to-one association to Cours
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	private List<Course> courses;
 
 	//bi-directional many-to-one association to Mark

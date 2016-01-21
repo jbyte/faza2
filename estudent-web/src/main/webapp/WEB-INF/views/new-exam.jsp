@@ -19,11 +19,11 @@
 			</header>
 
 			<nav>
-				<a class="btn-link" href="<c:url>overview-professor</c:url>">Pregled</a>
-				<a class="btn-link" href="<c:url>personal-data</c:url>">Osebni Podatki</a>
-				<a class="btn-link btn-link-curr" href="<c:url>new-exam</c:url>">Nov izpitni rok</a>
-				<a class="btn-link" href="<c:url>enter-mark</c:url>">Vpis ocen</a>
-				<a class="btn-link" href="<c:url>index</c:url>">Logout</a>
+				<a class="btn-link" href="overview-professor">Pregled</a>
+				<a class="btn-link" href="personal-data">Osebni Podatki</a>
+				<a class="btn-link btn-link-curr" href="new-exam">Nov izpitni rok</a>
+				<a class="btn-link" href="enter-mark">Vpis ocen</a>
+				<a class="btn-link" href="index">Logout</a>
 			</nav>
 			
 			<section id="content">
@@ -51,7 +51,7 @@
 						<span class="left">Komentarji:</span>
 						<textarea cols=30 rows=5 class="input-small"></textarea>
 						<br />
-						<a class="btn btn-right" href="#">Shrani</a>
+						<a class="btn btn-right" onclick="submit_form()" href="#">Shrani</a>
 					</form>
 				</section>
 			</section>

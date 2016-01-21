@@ -7,3 +7,5 @@ target/
 .project
 .classpath
 .tern-project
+doc/
+*.zip

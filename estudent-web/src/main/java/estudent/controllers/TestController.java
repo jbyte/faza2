@@ -25,6 +25,10 @@ public class TestController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/index")
+	public String index(){
+		return "index";
+	}
 	
 	@RequestMapping(value="/addUser",method=RequestMethod.POST)
 	public String addUser(@ModelAttribute User u){
@@ -42,8 +46,8 @@ public class TestController {
 				session.setAttribute("user",tmp);
 				switch(tmp.getTip()){
 					case 0: return "redirect:/overview-student";
-					case 1: return "/overview-professor";
-					case 2: return "/overview-referat";
+					case 1: return "redirect:/overview-professor";
+					case 2: return "redirect:/overview-referat";
 					default: return "redirect:/";
 				}
 			}else return "redirect:/";
@@ -55,15 +59,50 @@ public class TestController {
 		return "overview-student";
 	}
 	
+	@RequestMapping(value="/overview-professor")
+	public String overview_prof(){
+		return "overview-professor";
+	}
+	
+	@RequestMapping(value="/overview-referat")
+	public String overview_ref(){
+		return "overview-referat";
+	}
+	
 	@RequestMapping(value="/personal-data")
 	public String personal_data(){
 		return "personal-data";
 	}
 	
-	
-	@RequestMapping(value="/index")
-	public String index(){
-		return "index";
+	@RequestMapping(value="/cert-order")
+	public String cert_order(){
+		return "cert-order";
 	}
 	
+	@RequestMapping(value="/std-index")
+	public String std_index(){
+		return "std-index";
+	}
+	
+	@RequestMapping(value="/new-exam")
+	public String new_exam(){
+		return "new-exam";
+	}
+	
+	@RequestMapping(value="/enter-mark")
+	public String enter_mark(){
+		return "enter-mark";
+	}
+	
+	@RequestMapping(value="/updateUser", method=RequestMethod.POST)
+	public String updateUser(HttpSession seasion, @ModelAttribute User u){
+		if(!us.validate(u)){
+			System.out.println("bad input");
+			return "redirect:/personal-data";
+		}
+		int id = ((User)seasion.getAttribute("user")).getId();
+		us.updateUser(id,u);
+		seasion.setAttribute("user",us.getUser(id));
+		return "redirect:/personal-data";
+	}
 }

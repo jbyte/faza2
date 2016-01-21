@@ -19,9 +19,9 @@
 			</header>
 			
 			<nav>
-				<a class="btn-link btn-link-curr" href="<c:url>overview-referat</c:url>">Pregled</a>
-				<a class="btn-link" href="<c:url>personal-data</c:url>">Osebni Podatki</a>
-				<a class="btn-link" href="<c:url>index</c:url>">Logout</a>
+				<a class="btn-link btn-link-curr" href="overview-referat">Pregled</a>
+				<a class="btn-link" href="personal-data">Osebni Podatki</a>
+				<a class="btn-link" href="index">Logout</a>
 			</nav>
 
 			<section id="content">

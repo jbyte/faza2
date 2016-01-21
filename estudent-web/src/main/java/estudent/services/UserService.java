@@ -1,6 +1,8 @@
 package estudent.services;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -147,5 +149,91 @@ public class UserService {
 		if(tmp.getZcMesto()!=null && !tmp.getZcMesto().equals(u.getZcMesto())) u = updateTmpCity(u, tmp.getZcMesto());
 		if(tmp.getZcDrzava()!=null && !tmp.getZcDrzava().equals(u.getZcDrzava())) u = updateTmpState(u, tmp.getZcDrzava());
 		em.merge(u);
+	}
+	
+	public boolean validate(User u){
+		String stringregex = "[A-Za-z- ]*";
+		String addrregex = "[A-Za-z- ]*\\d{0,3}[a-c]?";
+		String emailregex = "[A-Za-z0-9-_.]+@[A-Za-z-_.]+[a-z]{1,3}";
+		String emsoregex = "\\d{13}";
+		String postnumregex = "\\d{0,4}";
+		
+		Pattern p = Pattern.compile(stringregex);
+		Matcher m;
+		
+		if (u.getDrzava()!=null) {
+			m = p.matcher(u.getDrzava());
+			if (!m.find())
+				return false;
+		}
+		
+		if (u.getIme()!=null) {
+			m = p.matcher(u.getIme());
+			if (!m.find())
+				return false;
+		}
+		
+		if (u.getPriimek()!=null) {
+			m = p.matcher(u.getPriimek());
+			if (!m.find())
+				return false;
+		}
+		
+		if (u.getMesto()!=null) {
+			m = p.matcher(u.getMesto());
+			if (!m.find())
+				return false;
+		}
+		
+		if (u.getZcDrzava()!=null) {
+			m = p.matcher(u.getZcDrzava());
+			if (!m.find())
+				return false;
+		}
+		
+		if (u.getZcMesto()!=null) {
+			m = p.matcher(u.getZcMesto());
+			if (!m.find())
+				return false;
+		}
+		
+		p = Pattern.compile(emailregex);
+		
+		if (u.getEmail()!=null) {
+			m = p.matcher(u.getEmail());
+			if (!m.find())
+				return false;
+		}
+		
+		p = Pattern.compile(emsoregex);
+		
+		if (u.getEmso()!=null) {
+			m = p.matcher(u.getEmso());
+			if (!m.find())
+				return false;
+		}
+		
+		p = Pattern.compile(postnumregex);
+		
+		m = p.matcher(Integer.toString(u.getPostnum()));
+		if(!m.find())return false;
+		
+		m = p.matcher(Integer.toString(u.getZcPostnum()));
+		if(!m.find())return false;
+		
+		p = Pattern.compile(addrregex);
+		
+		if (u.getNaslov()!=null) {
+			m = p.matcher(u.getNaslov());
+			if (!m.find())
+				return false;
+		}
+		
+		if (u.getZcNaslov()!=null) {
+			m = p.matcher(u.getZcNaslov());
+			if (!m.find())
+				return false;
+		}
+		return true;
 	}
 }

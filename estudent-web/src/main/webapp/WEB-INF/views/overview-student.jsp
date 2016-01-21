@@ -28,6 +28,11 @@
 			</nav>
 
 			<section id="content">
+				<c:if test="${user.courses!=null}">
+					<c:forEach var="i" items="${user.courses}">
+						<c:out value="${i.ime}" />
+					</c:forEach>
+				</c:if>
 				<section class="main main-small-padding">
 					<h2>Razpisani izpitni roki:</h2>
 					<table class="tab">

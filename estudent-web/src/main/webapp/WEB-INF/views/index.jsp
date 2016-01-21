@@ -20,7 +20,7 @@
 
 			<section id="content">
 				<section class="main">
-					<form id="login_form" method="post" action="login">
+					<form id="form" method="post" action="login">
 						<span class="form-title">Vpis v sistem</span>
 						<br />
 						<br />
@@ -28,8 +28,7 @@
 						<br />
 						<input type="password" name="password" placeholder="password"/>
 						<br />
-						<a class="btn btn-right" onclick="document.getElementById('login_form').submit()">LOGIN</a>
-						<button class="btn btn-right">test</button>
+						<a class="btn btn-right" onclick="submit_form();">LOGIN</a>
 					</form>
 				</section>
 			</section>

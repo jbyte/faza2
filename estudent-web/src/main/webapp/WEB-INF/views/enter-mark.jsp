@@ -19,11 +19,11 @@
 			</header>
 			
 			<nav>
-				<a class="btn-link" href="<c:url>overview-professor</c:url>">Pregled</a>
-				<a class="btn-link" href="<c:url>personal-data</c:url>">Osebni Podatki</a>
-				<a class="btn-link" href="<c:url>new-exam</c:url>">Nov izpitni rok</a>
-				<a class="btn-link btn-link-curr" href="<c:url>enter-mark</c:url>">Vpis ocen</a>
-				<a class="btn-link" href="<c:url>index</c:url>">Logout</a>
+				<a class="btn-link" href="overview-professor">Pregled</a>
+				<a class="btn-link" href="personal-data">Osebni Podatki</a>
+				<a class="btn-link" href="new-exam">Nov izpitni rok</a>
+				<a class="btn-link btn-link-curr" href="enter-mark">Vpis ocen</a>
+				<a class="btn-link" href="index">Logout</a>
 			</nav>
 
 			<section id="content">

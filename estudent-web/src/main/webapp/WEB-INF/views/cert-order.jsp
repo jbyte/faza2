@@ -19,11 +19,11 @@
 			</header>
 			
 			<nav>
-				<a class="btn-link" href="<c:url>overview-student</c:url>">Pregled</a>
-				<a class="btn-link" href="<c:url>personal-data</c:url>">Osebni Podatki</a>
-				<a class="btn-link btn-link-curr" href="<c:url>cert-order</c:url>">Naroèilo potrdil</a>
-				<a class="btn-link" href="<c:url>std-index</c:url>">Študentski indeks</a>
-				<a class="btn-link" href="<c:url>index</c:url>">Logout</a>
+				<a class="btn-link" href="overview-student">Pregled</a>
+				<a class="btn-link" href="personal-data">Osebni Podatki</a>
+				<a class="btn-link btn-link-curr" href="cert-order">Naroèilo potrdil</a>
+				<a class="btn-link" href="std-index">Študentski indeks</a>
+				<a class="btn-link" href="index">Logout</a>
 			</nav>
 
 			<section id="content">
@@ -70,7 +70,7 @@
 							<option value="personal">Osebno</option>
 						</select>
 						<br />
-						<a class="btn btn-right" href="#">Naroèi</a>
+						<a class="btn btn-right" onclick="submit_form()" href="#">Naroèi</a>
 					</form>
 				</section>
 			</section>
