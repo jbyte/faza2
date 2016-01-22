@@ -30,6 +30,13 @@ public class CourseService {
 	}
 	
 	@Transactional
+	public Course getCourse(String name){
+		Query q = em.createNamedQuery("Course.getByName");
+		q.setParameter(1,name);
+		return ((Course)q.getSingleResult());
+	}
+	
+	@Transactional
 	public void addCourse(Course m){
 		em.persist(m);
 	}
@@ -48,7 +55,7 @@ public class CourseService {
 		q.setParameter(1,id);
 		Course c = ((Course)q.getSingleResult());
 		if(!c.getIme().equals(tmp.getIme()))c.setIme(tmp.getIme());
-		if(!c.getUser().equals(tmp.getUser()))c.setUser(tmp.getUser());
+		if(!c.getProf().equals(tmp.getProf()))c.setProf(tmp.getProf());
 		em.merge(c);
 	}
 

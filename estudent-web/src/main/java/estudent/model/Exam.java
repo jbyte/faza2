@@ -1,19 +1,29 @@
 package estudent.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.List;
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 /**
- * The persistent class for the exam database table.
+ * The persistent class for the exams database table.
  * 
  */
 @Entity
+@Table(name="exams")
 @NamedQueries({
 	@NamedQuery(name="Exam.getAll", query="SELECT e FROM Exam e"),
 	@NamedQuery(name="Exam.getById", query="SELECT e FROM Exam e WHERE e.id=?1")
@@ -21,22 +31,21 @@ import javax.persistence.OneToMany;
 public class Exam implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@GeneratedValue
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-	private Timestamp cas;
+	@Column(name="datum_cas")
+	private Timestamp datumCas;
 
 	private String prostor;
 
-	//bi-directional many-to-one association to Cours
-	@ManyToOne
-	@JoinColumn(name="predmet")
-	private Course course;
+	private int rok;
 
-	//bi-directional many-to-one association to Mark
-	@OneToMany(mappedBy="exam")
-	private List<Mark> marks;
+	//bi-directional many-to-one association to Course
+	@ManyToOne
+	@JoinColumn(name="id_course")
+	private Course cours;
 
 	public Exam() {
 	}
@@ -49,12 +58,12 @@ public class Exam implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getCas() {
-		return this.cas;
+	public Timestamp getDatumCas() {
+		return this.datumCas;
 	}
 
-	public void setCas(Timestamp cas) {
-		this.cas = cas;
+	public void setDatumCas(Timestamp datumCas) {
+		this.datumCas = datumCas;
 	}
 
 	public String getProstor() {
@@ -65,34 +74,20 @@ public class Exam implements Serializable {
 		this.prostor = prostor;
 	}
 
+	public int getRok() {
+		return this.rok;
+	}
+
+	public void setRok(int rok) {
+		this.rok = rok;
+	}
+
 	public Course getCours() {
-		return this.course;
+		return this.cours;
 	}
 
-	public void setCours(Course course) {
-		this.course = course;
-	}
-
-	public List<Mark> getMarks() {
-		return this.marks;
-	}
-
-	public void setMarks(List<Mark> marks) {
-		this.marks = marks;
-	}
-
-	public Mark addMark(Mark mark) {
-		getMarks().add(mark);
-		mark.setExam(this);
-
-		return mark;
-	}
-
-	public Mark removeMark(Mark mark) {
-		getMarks().remove(mark);
-		mark.setExam(null);
-
-		return mark;
+	public void setCours(Course cours) {
+		this.cours = cours;
 	}
 
 }

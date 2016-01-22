@@ -29,14 +29,15 @@
 			<section id="content">
 				<section class="main main-small-padding main-text-right">
 					<h2>Razpis novega izpitnega roka:</h2>
-					<form>
+					<form id="form" method="post" action="addExam">
 						<span class="left">Predmet:</span>
-						<select name="course">
+						<select name="cours">
 							<option value="none" selected>Izberi</option>
-							<option value="pr1">Predmet1</option>
-							<option value="pr3">Predmet3</option>
-							<option value="pr4">Predmet4</option>
-							<option value="pr5">Predmet5</option>
+							<c:if test="${user.courses!=null}">
+								<c:forEach var="i" items="${user.courses}">
+									<option value="${i.ime}">${i.ime}</option>
+								</c:forEach>
+							</c:if>
 						</select>
 						<br />
 						<span class="left">Datum:</span>
@@ -46,7 +47,7 @@
 						<input class="input-small" type="text" name="time" placeholder="format: hh:mm" />
 						<br />
 						<span class="left">Prostor:</span>
-						<input class="input-small" type="text" name="room" />
+						<input class="input-small" type="text" name="prostor" />
 						<br />
 						<span class="left">Komentarji:</span>
 						<textarea cols=30 rows=5 class="input-small"></textarea>

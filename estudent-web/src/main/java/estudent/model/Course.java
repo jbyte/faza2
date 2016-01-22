@@ -3,9 +3,6 @@ package estudent.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 
 /**
@@ -16,29 +13,30 @@ import javax.persistence.OneToMany;
 @Table(name="courses")
 @NamedQueries({
 	@NamedQuery(name="Course.getAll", query="SELECT c FROM Course c"),
-	@NamedQuery(name="Course.getById", query="SELECT c FROM Course c WHERE c.id=?1")
+	@NamedQuery(name="Course.getById", query="SELECT c FROM Course c WHERE c.id=?1"),
+	@NamedQuery(name="Course.getByName", query="SELECT c FROM Course c WHERE c.ime=?1")
 })
 public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@GeneratedValue
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
 	private String ime;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="nosilec")
-	private User user;
+	@JoinColumn(name="id_prof")
+	private User idProf;
 
 	//bi-directional many-to-one association to Exam
-	@OneToMany(mappedBy="course")
+	@OneToMany(mappedBy="cours",fetch=FetchType.EAGER)
 	private List<Exam> exams;
 
-	//bi-directional many-to-one association to Mark
-	@OneToMany(mappedBy="course")
-	private List<Mark> marks;
+	//bi-directional many-to-one association to Usercourse
+	@OneToMany(mappedBy="course",fetch=FetchType.EAGER)
+	private List<Usercourse> usercourses;
 
 	public Course() {
 	}
@@ -59,12 +57,12 @@ public class Course implements Serializable {
 		this.ime = ime;
 	}
 
-	public User getUser() {
-		return this.user;
+	public User getProf() {
+		return this.idProf;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setProf(User user) {
+		this.idProf = user;
 	}
 
 	public List<Exam> getExams() {
@@ -89,26 +87,26 @@ public class Course implements Serializable {
 		return exam;
 	}
 
-	public List<Mark> getMarks() {
-		return this.marks;
+	public List<Usercourse> getUsercourses() {
+		return this.usercourses;
 	}
 
-	public void setMarks(List<Mark> marks) {
-		this.marks = marks;
+	public void setUsercourses(List<Usercourse> usercourses) {
+		this.usercourses = usercourses;
 	}
 
-	public Mark addMark(Mark mark) {
-		getMarks().add(mark);
-		mark.setCours(this);
+	public Usercourse addUsercours(Usercourse usercours) {
+		getUsercourses().add(usercours);
+		usercours.setCours(this);
 
-		return mark;
+		return usercours;
 	}
 
-	public Mark removeMark(Mark mark) {
-		getMarks().remove(mark);
-		mark.setCours(null);
+	public Usercourse removeUsercours(Usercourse usercours) {
+		getUsercourses().remove(usercours);
+		usercours.setCours(null);
 
-		return mark;
+		return usercours;
 	}
 
 }

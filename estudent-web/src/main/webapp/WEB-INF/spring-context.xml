@@ -27,7 +27,7 @@
 	<!-- MySQL Datasource with Commons DBCP connection pooling -->
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/estudent" />
+		<property name="url" value="jdbc:mysql://localhost:3306/estudent-new" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>

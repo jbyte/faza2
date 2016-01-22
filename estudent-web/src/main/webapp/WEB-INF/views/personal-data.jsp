@@ -26,14 +26,14 @@
 					<a class="btn-link" href="std-index">Študentski indeks</a>
 				</c:if>
 				<c:if test="${user.tip==1}">
-					<a class="btn-link btn-link-curr" href="overview-professor">Pregled</a>
-					<a class="btn-link" href="personal-data">Osebni Podatki</a>
+					<a class="btn-link" href="overview-professor">Pregled</a>
+					<a class="btn-link btn-link-curr" href="personal-data">Osebni Podatki</a>
 					<a class="btn-link" href="new-exam">Nov izpitni rok</a>
 					<a class="btn-link" href="enter-mark">Vpis ocen</a>
 				</c:if>
 				<c:if test="${user.tip==2}">
-					<a class="btn-link btn-link-curr" href="overview-referat">Pregled</a>
-					<a class="btn-link" href="personal-data">Osebni Podatki</a>
+					<a class="btn-link" href="overview-referat">Pregled</a>
+					<a class="btn-link btn-link-curr" href="personal-data">Osebni Podatki</a>
 				</c:if>
 				<a class="btn-link" href="index">Logout</a>
 			</nav>

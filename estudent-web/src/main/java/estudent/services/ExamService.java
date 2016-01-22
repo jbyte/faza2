@@ -47,7 +47,7 @@ public class ExamService {
 		Query q = em.createNamedQuery("Exam.getById");
 		q.setParameter(1,id);
 		Exam e = ((Exam)q.getSingleResult());
-		if(!e.getCas().equals(tmp.getCas()))e.setCas(tmp.getCas());
+		if(!e.getDatumCas().equals(tmp.getDatumCas()))e.setDatumCas(tmp.getDatumCas());
 		if(!e.getProstor().equals(tmp.getProstor()))e.setProstor(tmp.getProstor());
 		em.merge(e);
 	}

@@ -3,8 +3,6 @@ package estudent.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
-import javax.persistence.GeneratedValue;
-import javax.persistence.OneToMany;
 
 
 /**
@@ -21,8 +19,8 @@ import javax.persistence.OneToMany;
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@GeneratedValue
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
 	private String drzava;
@@ -57,13 +55,13 @@ public class User implements Serializable {
 	@Column(name="zc_postnum")
 	private int zcPostnum;
 
-	//bi-directional many-to-one association to Cours
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
+	//bi-directional many-to-one association to Course
+	@OneToMany(mappedBy="idProf",fetch=FetchType.EAGER)
 	private List<Course> courses;
 
-	//bi-directional many-to-one association to Mark
-	@OneToMany(mappedBy="user")
-	private List<Mark> marks;
+	//bi-directional many-to-one association to Usercourse
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
+	private List<Usercourse> usercourses;
 
 	public User() {
 	}
@@ -196,40 +194,40 @@ public class User implements Serializable {
 		this.courses = courses;
 	}
 
-	public Course addCours(Course course) {
-		getCourses().add(course);
-		course.setUser(this);
+	public Course addCours(Course cours) {
+		getCourses().add(cours);
+		cours.setProf(this);
 
-		return course;
+		return cours;
 	}
 
-	public Course removeCours(Course course) {
-		getCourses().remove(course);
-		course.setUser(null);
+	public Course removeCours(Course cours) {
+		getCourses().remove(cours);
+		cours.setProf(null);
 
-		return course;
+		return cours;
 	}
 
-	public List<Mark> getMarks() {
-		return this.marks;
+	public List<Usercourse> getUsercourses() {
+		return this.usercourses;
 	}
 
-	public void setMarks(List<Mark> marks) {
-		this.marks = marks;
+	public void setUsercourses(List<Usercourse> usercourses) {
+		this.usercourses = usercourses;
 	}
 
-	public Mark addMark(Mark mark) {
-		getMarks().add(mark);
-		mark.setUser(this);
+	public Usercourse addUsercours(Usercourse usercours) {
+		getUsercourses().add(usercours);
+		usercours.setUser(this);
 
-		return mark;
+		return usercours;
 	}
 
-	public Mark removeMark(Mark mark) {
-		getMarks().remove(mark);
-		mark.setUser(null);
+	public Usercourse removeUsercours(Usercourse usercours) {
+		getUsercourses().remove(usercours);
+		usercours.setUser(null);
 
-		return mark;
+		return usercours;
 	}
 
 }
