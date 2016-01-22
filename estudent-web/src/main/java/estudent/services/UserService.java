@@ -138,7 +138,7 @@ public class UserService {
 		if(tmp.getIme()!=null && !tmp.getIme().equals(u.getIme())) u = updateName(u, tmp.getIme());
 		if(tmp.getPriimek()!=null && !tmp.getPriimek().equals(u.getPriimek())) u = updateLastName(u, tmp.getPriimek());
 		if(tmp.getPassword()!=null && !tmp.getPassword().equals(u.getPassword())) u = updatePassword(u, tmp.getPassword());
-		if(tmp.getTip() != u.getTip()) u = updateType(u, tmp.getTip());
+		//if(tmp.getTip() != u.getTip()) u = updateType(u, tmp.getTip());
 		if(tmp.getEmso()!=null && !tmp.getEmso().equals(u.getEmso())) u = updateEmso(u, tmp.getEmso());
 		if(tmp.getNaslov()!=null && !tmp.getNaslov().equals(u.getNaslov())) u = updateAddr(u, tmp.getNaslov());
 		if(tmp.getPostnum() != u.getPostnum()) u = updatePostnum(u, tmp.getPostnum());
